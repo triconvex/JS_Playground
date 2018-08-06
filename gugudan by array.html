@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var result = [];
+//아래와 같이 짜면 배열에 모든 구구단 값들이 들어가는게 아니고, 각 단의 값이 배열길이 10인 배열안에 들어가고 출력,
+//이후 다음 단으로 넘어가면 그 위에 덮어쓰고 출력하는 식...
+//마지막에 배열값으로 남아있는 건 9단의 값들
+    for(var n = 2; n <= 9; n++){
+        for(var i = 1; i <= 9; i++){
+            result[i] = n * i;
+        }
+    
+        for(var i = 1; i <= 9; i++){
+            var str = "";
+            str += n + " X " + i + " = " + result[i] + " <br>";
+            document.write(str);
+        }
+    }
+    </script>
+    
+</body>
+</html>
