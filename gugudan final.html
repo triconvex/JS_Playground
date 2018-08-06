@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>파이널 구구단</title>
+</head>
+<h1>파이널 구구단</h1>
+<body>
+    <script>
+    
+    var a = prompt("값을 입력해주세요.");
+    var b = a.split(',');
+    var c = [];
+    
+    for(var i = 0; i < b.length; i++) {
+        c.push(Number(b[i]));
+    }
+
+
+
+    var gugudan = {};
+
+    gugudan.result = [];
+
+    gugudan.current = -1;
+
+    gugudan.calculate = function(n){
+        this.current = n;
+        if (c.length === 1) {
+            for(var i = 0; i < 9; i++){
+                this.result[i] = n * (i + 1);
+            }
+        } else {
+            for(var i = 0; i < c[1]; i++){
+                this.result[i] = n * (i + 1);
+            } 
+        }
+    }
+    
+   gugudan.print = function(){
+       document.write("<h2>" + this.current + "단</h2>");
+       if (c.length === 1) {
+            for (var i = 0; i < 9; i++){
+                var x = this.current;
+                var y = i + 1;
+                var z = this.result[i];
+                document.write(x + " X " + y + " = " + z + "<br>");
+            }
+       } else {
+             for (var i = 0; i < c[1]; i++){
+                var x = this.current;
+                var y = i + 1;
+                var z = this.result[i];
+                document.write(x + " X " + y + " = " + z + "<br>");
+            }
+       }
+   }
+
+
+
+    function main() {
+        if (c.length === 1){
+            for (var n = 2; n < 10; n++) {
+                gugudan.calculate(n);
+                gugudan.print(n);
+            }
+        } else {
+            for (var n = 2; n < c[0] + 1; n++) {
+                gugudan.calculate(n);
+                gugudan.print(n);
+            }
+        }
+    }
+   main();
+
+
+
+    
+    </script>
+</body>
+</html>
