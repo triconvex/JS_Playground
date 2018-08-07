@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>number baseball</title>
+</head>
+<body>
+    <h1> 숫자야구 게임!</h1>
+    <div>
+        세 자리 수를 입력하세요! : 
+        <input type = "text" id = "answer">
+        <button onclick = "nb.main()">정답제출</button><br><br>
+    </div>
+
+    <div id= "results"></div>
+
+    <script>
+    
+    var nb = {};
+
+    nb.generateRandom = function (){ 
+        var result = [];
+        result[0] = Math.floor(Math.random() * 9) + 1;
+        do {
+            result[1] = Math.floor(Math.random() * 9) + 1;
+        } while (result[0] === result[1]);
+        do {
+            result[2] = Math.floor(Math.random() * 9) + 1;
+        } while (result[2] === result[1] || result[2] === result[0]);
+        return result;
+    }
+
+    nb.saveRandom = function(){
+        var result = this.generateRandom();
+        return result;
+    }
+
+    nb.generateAnswer = function (){
+        var answer = document.getElementById('answer').value;
+        answer = answer.split('');
+        var result = [];
+        result[0] = Number(answer[0]);
+        result[1] = Number(answer[1]);
+        result[2] = Number(answer[2]);
+        return result;
+    }
+
+    nb.countAnswer = function (randomArray){
+        var random = randomArray;
+        var answer = this.generateAnswer();
+        var count = [];
+        var first = this.countFirst(random[0],answer);
+        var second = this.countSecond(random[1],answer);
+        var third = this.countThird(random[2],answer);
+        count[0] = first[0] + second[0] + third[0];
+        count[1] = first[1] + second[1] + third[1];
+        count[2] = first[2] + second[2] + third[2];
+        
+        return count;
+    }
+
+
+    nb.countFirst = function (n1,ans){
+        var answer = ans;
+        var result = [0,0,0];
+        if (n1 === answer[0]) {
+            result[0] ++;
+        } else if (n1 === answer[1] || n1 === answer[2]) {
+            result[1] ++;
+        } else {
+            result[2] ++;
+        }
+        return result;
+    }
+
+        nb.countSecond = function (n1,ans){
+        var answer = ans;
+        var result = [0,0,0];
+        if (n1 === answer[1]) {
+            result[0]++;
+        } else if (n1 === answer[0] || n1 === answer[2]) {
+            result[1]++;
+        } else {
+            result[2]++;
+        }
+        return result;
+    }
+
+        nb.countThird = function (n1,ans){
+        var answer = ans;
+        var result = [0,0,0];
+        if (n1 === answer[2]) {
+            result[0]++;
+        } else if (n1 === answer[0] || n1 === answer[1]) {
+            result[1]++;
+        } else {
+            result[2]++;
+        }
+        return result;
+    }
+
+
+    nb.makeHint = function(result){
+
+        var str = {};
+        str = "[현재 스코어 : " + result[0] + " 스트라이크 " + result[1] + " 볼 " + result[2] + " 낫싱]";
+        
+        return str;
+    }
+//컴퓨터의랜덤값은 최초 한번으로 저장해야하는데 전역변수 안쓰고 어떻게??
+    nb.saveRandom = function(){
+        return this.generateRandom();
+        nb.main = funct
+    }
+    
+    nb.main = function (result){
+        var result = this.countAnswer(this.generateRandom());
+        var hint = this.makeHint(result);
+        var print = document.getElementById('results');
+        print.innerHTML += hint + "<br>";
+   }
+
+   /*
+    nb.print = function(result){
+
+        do{
+            document.wirte("[현재 스코어 : " + result[0] + " 스트라이크 " + result[1] + " 볼 " + result[2] + " 낫싱]" + "\n");
+        } while (result[0])
+        
+
+        var print = document.getElementById("results");
+        print.innerHTML = str;
+        return result[0];
+    }
+
+
+    nb.countAnswer = function (){
+       
+       var Random = this.generateRandom();
+       var 
+       var hint = [];
+       var count = 0;
+       do{
+           var strikecnt = 0;
+           var ballcnt = 0;
+           var nothingcnt = 0;
+           var Answer = this.generateAnswer();
+
+           if (Random[0] === Answer[0]) {
+               strikecnt++;
+           } else if (Random[0] === Answer[1] || Random[0] === Answer[2]) {
+               ballcnt++;
+           } else {
+               nothingcnt++;
+           }
+
+           if (Random[1] === Answer[1]) {
+               strikecnt++;
+           } else if (Random[1] === Answer[0] || Random[1] === Answer[2]) {
+               ballcnt++;
+           } else {
+               nothingcnt++;
+           }
+
+           if (Random[2] === Answer[2]) {
+               strikecnt++;
+           } else if (Random[2] === Answer[1] || Random[2] === Answer[0]) {
+               ballcnt++;
+           } else {
+               nothingcnt++;
+           }
+
+           count++;
+
+           hint.push("[" + count + "회차] 답안 : " + Answer.join("") + " [현재 스코어 : " + strikecnt + " 스트라이크 " + ballcnt + " 볼 " + nothingcnt + " 낫싱]" + "\n");
+           alert(hint.join(""));
+
+       } while(strikecnt < 3)
+       alert("정답!");
+
+       document.write(count + "번만에 정답을 맞추셨습니다! 정답은 : " + Random.join("") + " 입니다!");
+   }
+*/
+    </script>
+
+
+    
+    
+</body>
+</html>
+
