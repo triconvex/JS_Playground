@@ -95,23 +95,20 @@
     }
 
     nb.makeHint = function(result){
-
         var str = {};
         str = "[현재 스코어 : " + result[0] + " 스트라이크 " + result[1] + " 볼 " + result[2] + " 낫싱]";
-        
         return str;
     }
     
-
-//전역변수 사용금지에 어긋나는게 아닌건지(?)
+    
     nb.saveRandom = nb.generateRandom();
 
     nb.main = function (random){
+        var answer = document.getElementById('answer').value;
         var result = this.countAnswer(random);
         var hint = this.makeHint(result);
         var print = document.getElementById('results');
-        print.innerHTML += hint + "<br>";
-        
+        print.innerHTML += "제출답안 : " + answer + " " + hint + "<br>";
         if (result[0] === 3) {
             alert("정답");
             print.innerHTML += "정답입니다!";
